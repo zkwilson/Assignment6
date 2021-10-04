@@ -130,27 +130,20 @@ public class StudentsCsvUseCase {
     }
 
     public String getStudentsAsCsvByCourse() {
-       /* List<Student> students = getStudentList();
-        List<Student> advancedJava = new ArrayList<>();
-        List<Student> calculus = new ArrayList<>();
-        List<Student> java101 = new ArrayList<>();
-        List<Course> kentCourses = new ArrayList<>();
-        List<Course> rogerCourses = new ArrayList<>();
+        List<Student> students = getStudentList();
         Map<String, List<Student>> courseMap = new HashMap();
 
-        for(Student student : students) {
-            if (student.getFirstName().equals("Kent")) {
-                kentCourses = student.getCourse();
-            }
-            else {
-                rogerCourses = student.getCourse();
+        for(Student iterateStudents : students) {
+            List<Course> courseList = iterateStudents.getCourse();
+            for(int i = 0; i < courseList.size(); i++) {
+                courseMap.put(courseList.get(i).getName(), List.of(iterateStudents));
             }
         }
 
-        for(Course course : kentCourses) {
-            courseMap.put(course.getName(), )
-        }*/
-
-        return null;
+        StringWriter writer = new StringWriter();
+        Context context = new Context();
+        context.setVariable("courseMap", courseMap);
+        templateEngine.process("course", context, writer);
+        return writer.toString();
     }
 }

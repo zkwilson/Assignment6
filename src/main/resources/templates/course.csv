@@ -1,0 +1,3 @@
+[# th:each="course : ${courseMap}"][(${course.key})],[# th: each="student : ${course.value}"][(${student.firstName})] [(${student.lastName})],
+[/][/]
+

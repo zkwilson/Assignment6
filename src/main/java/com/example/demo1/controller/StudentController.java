@@ -31,6 +31,6 @@ public class StudentController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=course.csv")
                 .contentType(MediaType.MULTIPART_FORM_DATA)
-                .body(studentsCsvUseCase.getStudentsAsCsv());
+                .body(studentsCsvUseCase.getStudentsAsCsvByCourse());
     }
 }
