@@ -20,7 +20,8 @@ public class Course {
         for (int i = 0; i < assignment.size(); i++) {
             totalGrade += assignment.get(i).getGrade();
         }
-        average = totalGrade/assignment.size();
+        average = (double) Math.round((totalGrade/assignment.size()) * 10) / 10;
+        //(double) Math.round((num / sum * 100) * 10) / 10;
         return average;
     }
 

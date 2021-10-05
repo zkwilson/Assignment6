@@ -11,10 +11,7 @@ import org.thymeleaf.context.Context;
 
 import java.io.StringWriter;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.example.demo1.ThymeleafConfig.CSV_TEMPLATE_ENGINE;
 
@@ -136,7 +133,16 @@ public class StudentsCsvUseCase {
         for(Student iterateStudents : students) {
             List<Course> courseList = iterateStudents.getCourse();
             for(int i = 0; i < courseList.size(); i++) {
-                courseMap.put(courseList.get(i).getName(), List.of(iterateStudents));
+                if(!courseMap.containsKey(courseList.get(i).getName())) {
+                    List<Student> mapStudents = new ArrayList<>();
+                    mapStudents.add(iterateStudents);
+                    courseMap.put(courseList.get(i).getName(), mapStudents);
+                }
+                else {
+                    List<Student> mapStudents = courseMap.get(courseList.get(i).getName());
+                    mapStudents.add(iterateStudents);
+                    courseMap.put(courseList.get(i).getName(), mapStudents);
+                }
             }
         }
 
